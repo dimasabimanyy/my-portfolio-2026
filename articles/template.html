@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- ✏️ UPDATE: page title -->
+    <title>Article Title — Dimas Abimanyu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --ink: #141210;
+        --ink-muted: #4a4744;
+        --ink-faint: #8a8480;
+        --paper: #faf9f7;
+        --paper-warm: #f2f0ec;
+        --accent: #c96a3a;
+        --accent-light: #f5ede7;
+        --border: #e0ddd8;
+        --font-display: "DM Serif Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --max-w: 660px;
+        --gap: clamp(2.5rem, 6vw, 5rem);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.7;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--paper);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--ink-faint);
+        border-radius: 2px;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem clamp(1.5rem, 6vw, 4rem);
+        background: rgba(250, 249, 247, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .nav-back {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 clamp(1.5rem, 6vw, 2rem);
+      }
+
+      /* ARTICLE HEADER */
+      .article-header {
+        padding-top: calc(var(--gap) + 5rem);
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .article-tag {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .article-tag::after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 40px;
+        background: var(--accent);
+        opacity: 0.4;
+      }
+      .article-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-bottom: 1.5rem;
+      }
+      .article-meta {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.8rem;
+        color: var(--ink-faint);
+        font-weight: 500;
+      }
+      .article-meta span {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+      }
+
+      /* ARTICLE BODY */
+      .article-body {
+        padding: 3rem 0;
+      }
+
+      /* Typography — all your writing goes in here */
+      .article-body p {
+        color: var(--ink-muted);
+        font-size: 1.02rem;
+        line-height: 1.85;
+        margin-bottom: 1.5rem;
+      }
+      .article-body p:last-child {
+        margin-bottom: 0;
+      }
+
+      .article-body h2 {
+        font-family: var(--font-display);
+        font-size: 1.65rem;
+        line-height: 1.2;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        margin: 3rem 0 1rem;
+      }
+
+      .article-body h3 {
+        font-size: 1.05rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin: 2rem 0 0.6rem;
+      }
+
+      .article-body ul,
+      .article-body ol {
+        margin: 0 0 1.5rem 1.25rem;
+        color: var(--ink-muted);
+        font-size: 1.02rem;
+        line-height: 1.85;
+      }
+      .article-body li {
+        margin-bottom: 0.4rem;
+      }
+
+      .article-body blockquote {
+        border-left: 3px solid var(--accent);
+        margin: 2rem 0;
+        padding: 1rem 1.5rem;
+        background: var(--accent-light);
+      }
+      .article-body blockquote p {
+        color: var(--ink);
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      .article-body code {
+        font-family: "Courier New", monospace;
+        font-size: 0.88rem;
+        background: var(--paper-warm);
+        border: 1px solid var(--border);
+        padding: 0.1rem 0.4rem;
+        border-radius: 2px;
+        color: var(--ink);
+      }
+
+      .article-body pre {
+        background: var(--ink);
+        color: #f2f0ec;
+        padding: 1.5rem;
+        border-radius: 2px;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+      .article-body pre code {
+        background: none;
+        border: none;
+        padding: 0;
+        color: inherit;
+        font-size: inherit;
+      }
+
+      .article-body a {
+        color: var(--accent);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+      }
+      .article-body a:hover {
+        text-decoration: none;
+      }
+
+      /* DIVIDER */
+      .article-body hr {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 3rem 0;
+      }
+
+      /* CLOSING BIO */
+      .author-card {
+        display: flex;
+        gap: 1.25rem;
+        align-items: start;
+        padding: 1.75rem;
+        background: var(--paper-warm);
+        border: 1px solid var(--border);
+        margin-top: 3rem;
+      }
+      .author-avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--ink);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--paper);
+        font-family: var(--font-display);
+        font-size: 1rem;
+        flex-shrink: 0;
+      }
+      .author-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--ink);
+        margin-bottom: 0.2rem;
+      }
+      .author-bio {
+        font-size: 0.83rem;
+        color: var(--ink-muted);
+        line-height: 1.6;
+      }
+      .author-bio a {
+        color: var(--accent);
+        text-decoration: none;
+        font-weight: 500;
+      }
+      .author-bio a:hover {
+        text-decoration: underline;
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+        margin-top: var(--gap);
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">Dimas Abimanyu</a>
+      <a href="blog.html" class="nav-back">← All Writing</a>
+    </nav>
+
+    <div class="article-header">
+      <div class="container">
+        <!-- ✏️ UPDATE: tag label -->
+        <p class="article-tag">Career</p>
+        <!-- ✏️ UPDATE: article title -->
+        <h1 class="article-title">Your Article Title Goes Here</h1>
+        <div class="article-meta">
+          <!-- ✏️ UPDATE: date and read time -->
+          <span>March 2026</span>
+          <span>5 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <article class="article-body">
+        <!--
+        =====================================================================
+        ✏️ WRITE YOUR ARTICLE BELOW.
+
+        Available elements:
+          <p>          — paragraph (main body text)
+          <h2>         — section heading
+          <h3>         — sub-heading
+          <ul> / <ol>  — bullet or numbered list
+          <li>         — list item
+          <blockquote><p> — pull quote / highlighted callout
+          <code>       — inline code  e.g. <code>const x = 1</code>
+          <pre><code>  — code block (multi-line)
+          <a href="">  — link
+          <hr>         — horizontal rule / section break
+        =====================================================================
+      -->
+
+        <p>
+          Start writing here. This is your opening paragraph — make it count.
+          Hook the reader with the core tension or idea you're going to explore.
+        </p>
+
+        <p>
+          Add more context here. Who is this for? What will they walk away with?
+          Keep it tight — readers decide in the first two paragraphs whether to
+          keep going.
+        </p>
+
+        <h2>Your First Section Heading</h2>
+
+        <p>
+          Dive into the meat of the topic. Use plain language. If you're
+          explaining a concept, use a concrete example as quickly as possible.
+        </p>
+
+        <blockquote>
+          <p>
+            A callout or pull quote goes here. Great for emphasising a key
+            insight or framing an important idea before you expand on it.
+          </p>
+        </blockquote>
+
+        <p>
+          Continue the explanation. Break up long ideas into short paragraphs —
+          one idea per paragraph is a good rule of thumb.
+        </p>
+
+        <h2>Your Second Section Heading</h2>
+
+        <p>
+          Another section. If you have a list of things, use an actual list:
+        </p>
+
+        <ul>
+          <li>First point — keep each item to one sentence if you can</li>
+          <li>Second point — parallel structure helps readability</li>
+          <li>Third point — end the list and follow up with a paragraph</li>
+        </ul>
+
+        <p>
+          Inline <code>code</code> looks like this. For longer code snippets,
+          use a block:
+        </p>
+
+        <pre><code>// Example code block
+const greet = (name) => {
+  return `Hello, ${name}!`;
+};
+
+console.log(greet('Dimas'));</code></pre>
+
+        <h2>Closing Thoughts</h2>
+
+        <p>
+          Wrap up your article. Restate the core takeaway in one or two
+          sentences. What should the reader actually do or think differently
+          about after reading this?
+        </p>
+
+        <p>
+          Keep it concise. The best endings don't drag — they land and stop.
+        </p>
+
+        <hr />
+
+        <div class="author-card">
+          <div class="author-avatar">D</div>
+          <div>
+            <p class="author-name">Dimas Abimanyu</p>
+            <p class="author-bio">
+              Software engineer from Indonesia building web products and writing
+              about the real experience of working in tech. Find me on
+              <a href="https://twitter.com/dimasabimanyu">Twitter</a> or
+              <a href="https://linkedin.com/in/dimasabimanyu">LinkedIn</a>.
+            </p>
+          </div>
+        </div>
+      </article>
+
+      <footer>
+        <span class="footer-copy">© 2026 Dimas Abimanyu</span>
+        <a href="blog.html" class="nav-back">← All Writing</a>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Writing — Dimas Abimanyu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --ink: #141210;
+        --ink-muted: #4a4744;
+        --ink-faint: #8a8480;
+        --paper: #faf9f7;
+        --paper-warm: #f2f0ec;
+        --accent: #c96a3a;
+        --accent-light: #f5ede7;
+        --border: #e0ddd8;
+        --font-display: "DM Serif Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --max-w: 720px;
+        --gap: clamp(2.5rem, 6vw, 5rem);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.7;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--paper);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--ink-faint);
+        border-radius: 2px;
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem clamp(1.5rem, 6vw, 4rem);
+        background: rgba(250, 249, 247, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .nav-back {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 clamp(1.5rem, 6vw, 2rem);
+      }
+
+      /* PAGE HEADER */
+      .page-header {
+        padding-top: calc(var(--gap) + 5rem);
+        padding-bottom: var(--gap);
+        border-bottom: 1px solid var(--border);
+      }
+      .page-eyebrow {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .page-eyebrow::after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 40px;
+        background: var(--accent);
+        opacity: 0.4;
+      }
+      .page-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 7vw, 4rem);
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-bottom: 1rem;
+      }
+      .page-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .page-sub {
+        font-size: 1rem;
+        color: var(--ink-muted);
+        max-width: 480px;
+        line-height: 1.75;
+      }
+
+      /* FILTER TABS */
+      .filter-row {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        padding: 2rem 0 0;
+      }
+      .filter-btn {
+        font-size: 0.78rem;
+        font-weight: 500;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.9rem;
+        border: 1px solid var(--border);
+        background: transparent;
+        color: var(--ink-muted);
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: var(--font-body);
+      }
+      .filter-btn:hover,
+      .filter-btn.active {
+        background: var(--ink);
+        color: var(--paper);
+        border-color: var(--ink);
+      }
+
+      /* ARTICLE LIST */
+      .articles {
+        padding: var(--gap) 0;
+      }
+      .article-item {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.5rem;
+        align-items: start;
+        padding: 1.75rem 0;
+        border-bottom: 1px solid var(--border);
+        text-decoration: none;
+        color: inherit;
+      }
+      .article-item:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .article-tag {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.5rem;
+      }
+      .article-title {
+        font-family: var(--font-display);
+        font-size: 1.2rem;
+        line-height: 1.3;
+        color: var(--ink);
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
+        transition: color 0.2s;
+      }
+      .article-item:hover .article-title {
+        color: var(--accent);
+      }
+      .article-excerpt {
+        font-size: 0.88rem;
+        color: var(--ink-muted);
+        line-height: 1.65;
+        margin-bottom: 0.75rem;
+      }
+      .article-meta {
+        font-size: 0.75rem;
+        color: var(--ink-faint);
+        font-weight: 500;
+        display: flex;
+        gap: 1rem;
+      }
+      .article-arrow {
+        font-size: 1rem;
+        color: var(--ink-faint);
+        padding-top: 0.75rem;
+        transition:
+          transform 0.2s,
+          color 0.2s;
+        flex-shrink: 0;
+      }
+      .article-item:hover .article-arrow {
+        transform: translate(3px, -3px);
+        color: var(--accent);
+      }
+
+      footer {
+        padding: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+        margin-top: var(--gap);
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--ink-faint);
+      }
+
+      @media (max-width: 520px) {
+        .article-arrow {
+          display: none;
+        }
+        .article-item {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="index.html" class="nav-logo">Dimas Abimanyu</a>
+      <a href="index.html" class="nav-back">← Home</a>
+    </nav>
+
+    <div class="page-header">
+      <div class="container">
+        <p class="page-eyebrow">Writing</p>
+        <h1 class="page-title">Thoughts on<br /><em>building software.</em></h1>
+        <p class="page-sub">
+          Practical writing on programming, career development in tech, and real
+          experiences as a developer — for people who are building or want to.
+        </p>
+        <div class="filter-row">
+          <button
+            class="filter-btn active"
+            onclick="filterArticles('all', this)"
+          >
+            All
+          </button>
+          <button
+            class="filter-btn"
+            onclick="filterArticles('Engineering', this)"
+          >
+            Engineering
+          </button>
+          <button class="filter-btn" onclick="filterArticles('Career', this)">
+            Career
+          </button>
+          <button
+            class="filter-btn"
+            onclick="filterArticles('Indie Building', this)"
+          >
+            Indie Building
+          </button>
+          <button class="filter-btn" onclick="filterArticles('Beginner', this)">
+            Beginner
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="articles" id="article-list">
+        <!--
+        =====================================================================
+        HOW TO ADD A NEW ARTICLE:
+        1. Duplicate the <a class="article-item"> block below.
+        2. Update: href, data-tag, .article-tag, .article-title,
+                   .article-excerpt, date, and read time.
+        3. Create the matching article HTML file (copy article-template.html).
+        4. Add the new entry at the TOP of this list (newest first).
+        =====================================================================
+      -->
+
+        <a
+          href="article-remote-work.html"
+          class="article-item"
+          data-tag="Career"
+        >
+          <div>
+            <p class="article-tag">Career</p>
+            <p class="article-title">
+              What 5 Years of Remote Work Taught Me About Shipping Software
+            </p>
+            <p class="article-excerpt">
+              Lessons on async communication, self-accountability, and why good
+              documentation is the real superpower no one talks about enough.
+            </p>
+            <div class="article-meta">
+              <span>March 2026</span>
+              <span>5 min read</span>
+            </div>
+          </div>
+          <span class="article-arrow">↗</span>
+        </a>
+
+        <a
+          href="article-graphql-vs-rest.html"
+          class="article-item"
+          data-tag="Engineering"
+        >
+          <div>
+            <p class="article-tag">Engineering</p>
+            <p class="article-title">
+              GraphQL vs REST: A Practical Guide for Real Projects
+            </p>
+            <p class="article-excerpt">
+              Not a theoretical debate — a look at when each approach actually
+              makes sense, based on experience building both in production.
+            </p>
+            <div class="article-meta">
+              <span>February 2026</span>
+              <span>8 min read</span>
+            </div>
+          </div>
+          <span class="article-arrow">↗</span>
+        </a>
+
+        <a
+          href="article-validate-saas.html"
+          class="article-item"
+          data-tag="Indie Building"
+        >
+          <div>
+            <p class="article-tag">Indie Building</p>
+            <p class="article-title">
+              How I Validate SaaS Ideas Before Writing a Single Line of Code
+            </p>
+            <p class="article-excerpt">
+              A simple framework I've developed from building small products
+              alongside a full-time engineering career.
+            </p>
+            <div class="article-meta">
+              <span>January 2026</span>
+              <span>6 min read</span>
+            </div>
+          </div>
+          <span class="article-arrow">↗</span>
+        </a>
+
+        <a
+          href="article-javascript-concepts.html"
+          class="article-item"
+          data-tag="Beginner"
+        >
+          <div>
+            <p class="article-tag">Beginner</p>
+            <p class="article-title">
+              The JavaScript Concepts I Wish Someone Had Explained Clearly
+            </p>
+            <p class="article-excerpt">
+              Closures, event loops, and promises — explained the way I actually
+              understand them now, not the way textbooks do it.
+            </p>
+            <div class="article-meta">
+              <span>December 2025</span>
+              <span>10 min read</span>
+            </div>
+          </div>
+          <span class="article-arrow">↗</span>
+        </a>
+      </div>
+
+      <footer>
+        <span class="footer-copy">© 2026 Dimas Abimanyu</span>
+        <a href="index.html" class="nav-back">← Back to home</a>
+      </footer>
+    </div>
+
+    <script>
+      function filterArticles(tag, btn) {
+        document
+          .querySelectorAll(".filter-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        document.querySelectorAll(".article-item").forEach((item) => {
+          item.style.display =
+            tag === "all" || item.dataset.tag === tag ? "grid" : "none";
+        });
+      }
+    </script>
+  </body>
+</html>
