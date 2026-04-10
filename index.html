@@ -18,7 +18,6 @@
         margin: 0;
         padding: 0;
       }
-
       :root {
         --ink: #141210;
         --ink-muted: #4a4744;
@@ -32,8 +31,8 @@
         --font-body: "DM Sans", system-ui, sans-serif;
         --max-w: 760px;
         --gap: clamp(3rem, 8vw, 6rem);
+        --drawer-w: 340px;
       }
-
       html {
         scroll-behavior: smooth;
       }
@@ -45,6 +44,7 @@
         line-height: 1.7;
         font-weight: 400;
         -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
       }
 
       ::-webkit-scrollbar {
@@ -58,6 +58,7 @@
         border-radius: 2px;
       }
 
+      /* NAV */
       nav {
         position: fixed;
         top: 0;
@@ -82,6 +83,7 @@
         display: flex;
         gap: 2rem;
         list-style: none;
+        align-items: center;
       }
       .nav-links a {
         font-size: 0.8rem;
@@ -96,6 +98,172 @@
         color: var(--ink);
       }
 
+      /* STACK BUTTON */
+      .nav-stack-btn {
+        font-size: 0.8rem;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-muted);
+        background: none;
+        border: 1px solid var(--border);
+        padding: 0.35rem 0.85rem;
+        border-radius: 2px;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: var(--font-body);
+      }
+      .nav-stack-btn:hover {
+        color: var(--accent);
+        border-color: var(--accent);
+      }
+      .nav-stack-btn .stack-icon {
+        font-size: 0.9rem;
+        transition: transform 0.3s;
+      }
+      .nav-stack-btn.open .stack-icon {
+        transform: rotate(180deg);
+      }
+
+      /* DRAWER OVERLAY */
+      .drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(20, 18, 16, 0);
+        z-index: 200;
+        pointer-events: none;
+        transition: background 0.35s;
+      }
+      .drawer-overlay.open {
+        background: rgba(20, 18, 16, 0.35);
+        pointer-events: all;
+        backdrop-filter: blur(2px);
+      }
+
+      /* DRAWER */
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: var(--drawer-w);
+        max-width: 90vw;
+        background: var(--paper);
+        border-left: 1px solid var(--border);
+        z-index: 201;
+        transform: translateX(100%);
+        transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .drawer.open {
+        transform: translateX(0);
+      }
+
+      .drawer-header {
+        padding: 1.5rem 1.75rem 1.25rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+      .drawer-title {
+        font-family: var(--font-display);
+        font-size: 1.3rem;
+        color: var(--ink);
+      }
+      .drawer-close {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--ink-faint);
+        font-size: 1.1rem;
+        line-height: 1;
+        padding: 0.25rem;
+        transition: color 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+      }
+      .drawer-close:hover {
+        color: var(--ink);
+      }
+
+      .drawer-body {
+        flex: 1;
+        overflow-y: auto;
+        padding: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 1.75rem;
+      }
+      .drawer-body::-webkit-scrollbar {
+        width: 3px;
+      }
+      .drawer-body::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 2px;
+      }
+
+      .drawer-group {
+      }
+      .drawer-group-name {
+        font-size: 0.68rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.85rem;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .drawer-group-name::after {
+        content: "";
+        display: block;
+        height: 1px;
+        flex: 1;
+        background: var(--accent);
+        opacity: 0.25;
+      }
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .skill-tag {
+        font-size: 0.82rem;
+        color: var(--ink);
+        background: var(--paper-warm);
+        padding: 0.25rem 0.65rem;
+        border-radius: 2px;
+        border: 1px solid var(--border);
+        transition:
+          background 0.15s,
+          border-color 0.15s;
+      }
+      .skill-tag:hover {
+        background: var(--accent-light);
+        border-color: var(--accent);
+      }
+
+      .drawer-note {
+        font-size: 0.82rem;
+        color: var(--ink-faint);
+        line-height: 1.6;
+        border-top: 1px solid var(--border);
+        padding-top: 1.25rem;
+        margin-top: auto;
+      }
+
+      /* PAGE LAYOUT */
       .container {
         max-width: var(--max-w);
         margin: 0 auto;
@@ -108,7 +276,6 @@
       section:last-of-type {
         border-bottom: none;
       }
-
       .section-label {
         font-size: 0.72rem;
         font-weight: 600;
@@ -175,7 +342,6 @@
         flex-wrap: wrap;
         align-items: center;
       }
-
       .btn {
         display: inline-flex;
         align-items: center;
@@ -206,32 +372,6 @@
         border-color: var(--ink);
       }
 
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.4rem;
-        font-size: 0.82rem;
-        color: var(--ink-muted);
-        font-weight: 400;
-        margin-top: 2.5rem;
-      }
-      .status-dot {
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: #4caf73;
-        animation: pulse 2s infinite;
-      }
-      @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-        }
-        50% {
-          opacity: 0.4;
-        }
-      }
-
       .fade-up {
         opacity: 0;
         transform: translateY(18px);
@@ -257,90 +397,6 @@
       }
       .fade-up:nth-child(5) {
         animation-delay: 0.36s;
-      }
-
-      /* ABOUT */
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-        align-items: start;
-      }
-      .about-text p {
-        color: var(--ink-muted);
-        margin-bottom: 1.25rem;
-        font-size: 0.97rem;
-      }
-      .about-text p:last-child {
-        margin-bottom: 0;
-      }
-      .about-facts {
-        display: flex;
-        flex-direction: column;
-        gap: 1.25rem;
-      }
-      .fact {
-        padding: 1.25rem;
-        background: var(--paper-warm);
-        border-left: 2px solid var(--accent);
-      }
-      .fact-label {
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--accent);
-        margin-bottom: 0.3rem;
-      }
-      .fact-value {
-        font-size: 0.95rem;
-        color: var(--ink);
-        font-weight: 400;
-      }
-
-      /* SKILLS */
-      .skills-intro {
-        color: var(--ink-muted);
-        font-size: 0.97rem;
-        max-width: 480px;
-        margin-bottom: 2.5rem;
-      }
-      .skills-note {
-        color: var(--ink-muted);
-        font-size: 0.9rem;
-        /* max-width: 480px; */
-        margin-top: 1.5rem;
-      }
-      .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 1px;
-        background: var(--border);
-        border: 1px solid var(--border);
-      }
-      .skill-group {
-        background: var(--paper);
-        padding: 1.5rem;
-      }
-      .skill-group-name {
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        color: var(--ink-muted);
-        margin-bottom: 1rem;
-      }
-      .skill-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-      }
-      .skill-tag {
-        font-size: 0.82rem;
-        color: var(--ink);
-        background: var(--paper-warm);
-        padding: 0.2rem 0.6rem;
-        border-radius: 2px;
       }
 
       /* PROJECTS */
@@ -534,23 +590,10 @@
         font-size: 0.78rem;
         color: var(--ink-faint);
       }
-      .footer-back {
-        font-size: 0.78rem;
-        color: var(--ink-muted);
-        text-decoration: none;
-        transition: color 0.2s;
-        font-weight: 500;
-      }
-      .footer-back:hover {
-        color: var(--ink);
-      }
 
       @media (max-width: 600px) {
-        .nav-links {
+        .nav-links li:not(:last-child) {
           display: none;
-        }
-        .about-grid {
-          grid-template-columns: 1fr;
         }
         .blog-grid {
           grid-template-columns: 1fr;
@@ -565,14 +608,76 @@
     </style>
   </head>
   <body>
+    <!-- DRAWER OVERLAY -->
+    <div
+      class="drawer-overlay"
+      id="drawerOverlay"
+      onclick="closeDrawer()"
+    ></div>
+
+    <!-- SLIDE-IN STACK DRAWER -->
+    <div class="drawer" id="drawer" role="dialog" aria-label="Skills & Stack">
+      <div class="drawer-header">
+        <span class="drawer-title">Stack</span>
+        <button class="drawer-close" onclick="closeDrawer()" aria-label="Close">
+          ✕
+        </button>
+      </div>
+      <div class="drawer-body">
+        <div class="drawer-group">
+          <p class="drawer-group-name">Frontend</p>
+          <div class="skill-tags">
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">TypeScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Next.js</span>
+          </div>
+        </div>
+        <div class="drawer-group">
+          <p class="drawer-group-name">Backend</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">GraphQL</span>
+            <span class="skill-tag">REST APIs</span>
+          </div>
+        </div>
+        <div class="drawer-group">
+          <p class="drawer-group-name">Data & Storage</p>
+          <div class="skill-tags">
+            <span class="skill-tag">PostgreSQL</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">Redis</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">ScyllaDB</span>
+          </div>
+        </div>
+        <div class="drawer-group">
+          <p class="drawer-group-name">Tooling & Infra</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">CI/CD</span>
+            <span class="skill-tag">Vercel</span>
+            <span class="skill-tag">AWS</span>
+          </div>
+        </div>
+        <p class="drawer-note">
+          This is the stack I use most often — I can quickly adapt to new ones.
+        </p>
+      </div>
+    </div>
+
     <nav>
       <a href="#hero" class="nav-logo">Dimas Abimanyu</a>
       <ul class="nav-links">
-        <!-- <li><a href="#about">About</a></li> -->
-        <li><a href="#skills">Skills</a></li>
         <li><a href="#projects">Work</a></li>
         <li><a href="#blog">Writing</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li>
+          <button class="nav-stack-btn" id="stackBtn" onclick="toggleDrawer()">
+            <span class="stack-icon">⌥</span> Stack
+          </button>
+        </li>
       </ul>
     </nav>
 
@@ -590,107 +695,6 @@
           <a href="#projects" class="btn btn-primary">View my work →</a>
           <a href="#contact" class="btn btn-outline">Get in touch</a>
         </div>
-        <!-- <div class="hero-badge fade-up">
-          <span class="status-dot"></span>
-          Available for freelance &amp; collaboration
-        </div> -->
-      </div>
-    </section>
-
-    <!-- <section id="about">
-      <div class="container">
-        <p class="section-label">About me</p>
-        <div class="about-grid">
-          <div class="about-text">
-            <p>
-              I'm a software engineer from Indonesia with over five years of
-              experience building web applications and digital products. My work
-              spans scalable web systems, API integrations, and reliable backend
-              services.
-            </p>
-            <p>
-              Beyond engineering, I'm building a personal brand in the tech
-              space — creating practical content about programming, career
-              development, and what it's really like working as a developer in
-              today's industry.
-            </p>
-            <p>
-              I also have an entrepreneurial streak, having run small businesses
-              and side projects alongside my tech career. This shapes how I
-              think about software: technically solid, and genuinely useful for
-              real people.
-            </p>
-          </div>
-          <div class="about-facts">
-            <div class="fact">
-              <p class="fact-label">Experience</p>
-              <p class="fact-value">5+ years in web development</p>
-            </div>
-            <div class="fact">
-              <p class="fact-label">Location</p>
-              <p class="fact-value">Indonesia · Remote-friendly</p>
-            </div>
-            <div class="fact">
-              <p class="fact-label">Focus</p>
-              <p class="fact-value">Full-stack web, APIs, SaaS products</p>
-            </div>
-            <div class="fact">
-              <p class="fact-label">Side quests</p>
-              <p class="fact-value">Content creation, indie tools, small biz</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-
-    <section id="skills">
-      <div class="container">
-        <p class="section-label">Skills & Stack</p>
-        <p class="skills-intro">Technologies I work with day-to-day.</p>
-        <div class="skills-grid">
-          <div class="skill-group">
-            <p class="skill-group-name">Frontend</p>
-            <div class="skill-tags">
-              <span class="skill-tag">JavaScript</span
-              ><span class="skill-tag">TypeScript</span>
-              <span class="skill-tag">React</span
-              ><span class="skill-tag">Next.js</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <p class="skill-group-name">Backend</p>
-            <div class="skill-tags">
-              <span class="skill-tag">Node.js</span
-              ><span class="skill-tag">Express</span>
-              <span class="skill-tag">GraphQL</span
-              ><span class="skill-tag">REST APIs</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <p class="skill-group-name">Data & Storage</p>
-            <div class="skill-tags">
-              <span class="skill-tag">PostgreSQL</span
-              ><span class="skill-tag">MongoDB</span
-              ><span class="skill-tag">Redis</span> ><span class="skill-tag"
-                >MySQL</span
-              >
-              ><span class="skill-tag">ScyllaDB</span>
-            </div>
-          </div>
-          <div class="skill-group">
-            <p class="skill-group-name">Tooling & Infra</p>
-            <div class="skill-tags">
-              <span class="skill-tag">Docker</span>
-              <span class="skill-tag">CI/CD</span
-              ><span class="skill-tag">Vercel</span
-              ><span class="skill-tag">AWS</span>
-            </div>
-          </div>
-        </div>
-        <p class="skills-note">
-          This is the stack I use most often, but I’ve worked with other
-          technologies and can quickly adapt to new ones.
-        </p>
       </div>
     </section>
 
@@ -708,15 +712,14 @@
                 monetization in mind.
               </p>
               <div class="project-stack">
-                <span class="project-tech">React</span
-                ><span class="project-tech">Node.js</span>
-                <span class="project-tech">GraphQL</span
-                ><span class="project-tech">PostgreSQL</span>
+                <span class="project-tech">React</span>
+                <span class="project-tech">Node.js</span>
+                <span class="project-tech">GraphQL</span>
+                <span class="project-tech">PostgreSQL</span>
               </div>
             </div>
             <span class="project-arrow">↗</span>
           </a>
-
           <a href="projects/mayar.html" class="project-item">
             <span class="project-num">02</span>
             <div class="project-body">
@@ -824,20 +827,11 @@
           tech — my inbox is open.
         </p>
         <div class="contact-links">
-          <a
-            href="/cdn-cgi/l/email-protection#95f1fcf8f4e6d5f0edf4f8e5f9f0bbf6faf8"
-            class="contact-link"
-          >
+          <a href="mailto:dimasabimanyyy@gmail.com" class="contact-link">
             <span class="contact-link-label"
               ><span class="contact-link-icon">✉</span>Email</span
             >
-            <span class="contact-link-handle"
-              ><span
-                class="__cf_email__"
-                data-cfemail="d9bdb0b4b8aa99bca1b8b4a9b5bcf7bab6b4"
-                >dimasabimanyyy@gmail.com</span
-              ></span
-            >
+            <span class="contact-link-handle">dimasabimanyyy@gmail.com</span>
           </a>
           <a
             href="https://linkedin.com/in/dimasabimanyu"
@@ -861,21 +855,36 @@
             >
             <span class="contact-link-handle">github.com/dimasabimanyy</span>
           </a>
-          <!-- <a
-            href="https://twitter.com/dimasabimanyu"
-            target="_blank"
-            class="contact-link"
-          >
-            <span class="contact-link-label"
-              ><span class="contact-link-icon">𝕏</span>Twitter / X</span
-            >
-            <span class="contact-link-handle">@dimasabimanyu</span>
-          </a> -->
         </div>
         <footer>
-          <span class="footer-copy">© 2026 Dimas Abiman</span>
+          <span class="footer-copy">© 2026 Dimas Abimanyu</span>
         </footer>
       </div>
     </section>
+
+    <script>
+      const drawer = document.getElementById("drawer");
+      const overlay = document.getElementById("drawerOverlay");
+      const btn = document.getElementById("stackBtn");
+
+      function openDrawer() {
+        drawer.classList.add("open");
+        overlay.classList.add("open");
+        btn.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeDrawer() {
+        drawer.classList.remove("open");
+        overlay.classList.remove("open");
+        btn.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      function toggleDrawer() {
+        drawer.classList.contains("open") ? closeDrawer() : openDrawer();
+      }
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDrawer();
+      });
+    </script>
   </body>
 </html>
