@@ -3,8 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- ✏️ UPDATE: page title -->
-    <title>Article Title — Dimas Abimanyu</title>
+    <title>Things I No Longer Over-Engineer — Dimas Abimanyu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -312,118 +311,121 @@
 
     <div class="article-header">
       <div class="container">
-        <!-- ✏️ UPDATE: tag label -->
         <p class="article-tag">Career</p>
-        <!-- ✏️ UPDATE: article title -->
-        <h1 class="article-title">Your Article Title Goes Here</h1>
+        <h1 class="article-title">Things I No Longer Over-Engineer</h1>
         <div class="article-meta">
-          <!-- ✏️ UPDATE: date and read time -->
-          <span>March 2026</span>
-          <span>5 min read</span>
+          <span>April 2026</span>
+          <span>4 min read</span>
         </div>
       </div>
     </div>
 
     <div class="container">
       <article class="article-body">
-        <!--
-        =====================================================================
-        ✏️ WRITE YOUR ARTICLE BELOW.
+        <p>
+          Most of my projects didn’t actually fail.<br />They just never
+          shipped.
+        </p>
 
-        Available elements:
-          <p>          — paragraph (main body text)
-          <h2>         — section heading
-          <h3>         — sub-heading
-          <ul> / <ol>  — bullet or numbered list
-          <li>         — list item
-          <blockquote><p> — pull quote / highlighted callout
-          <code>       — inline code  e.g. <code>const x = 1</code>
-          <pre><code>  — code block (multi-line)
-          <a href="">  — link
-          <hr>         — horizontal rule / section break
-        =====================================================================
-      -->
+        <p>Which is worse.</p>
 
         <p>
-          Start writing here. This is your opening paragraph — make it count.
-          Hook the reader with the core tension or idea you're going to explore.
+          Looking back, the reason was simple: I was over-engineering
+          everything.
         </p>
 
         <p>
-          Add more context here. Who is this for? What will they walk away with?
-          Keep it tight — readers decide in the first two paragraphs whether to
-          keep going.
+          In my head, every project had to be “scalable” before I even had a
+          user. Every function had to be “clean.” Every decision had to be
+          “future-proof.”
         </p>
 
-        <h2>Your First Section Heading</h2>
+        <p>And most of the time, nothing shipped.</p>
+
+        <h2>What I Used to Do</h2>
 
         <p>
-          Dive into the meat of the topic. Use plain language. If you're
-          explaining a concept, use a concrete example as quickly as possible.
-        </p>
-
-        <blockquote>
-          <p>
-            A callout or pull quote goes here. Great for emphasising a key
-            insight or framing an important idea before you expand on it.
-          </p>
-        </blockquote>
-
-        <p>
-          Continue the explanation. Break up long ideas into short paragraphs —
-          one idea per paragraph is a good rule of thumb.
-        </p>
-
-        <h2>Your Second Section Heading</h2>
-
-        <p>
-          Another section. If you have a list of things, use an actual list:
-        </p>
-
-        <ul>
-          <li>First point — keep each item to one sentence if you can</li>
-          <li>Second point — parallel structure helps readability</li>
-          <li>Third point — end the list and follow up with a paragraph</li>
-        </ul>
-
-        <p>
-          Inline <code>code</code> looks like this. For longer code snippets,
-          use a block:
-        </p>
-
-        <pre><code>// Example code block
-const greet = (name) => {
-  return `Hello, ${name}!`;
-};
-
-console.log(greet('Dimas'));</code></pre>
-
-        <h2>Closing Thoughts</h2>
-
-        <p>
-          Wrap up your article. Restate the core takeaway in one or two
-          sentences. What should the reader actually do or think differently
-          about after reading this?
+          I used to spend hours or weeks designing things that didn’t matter
+          yet.
         </p>
 
         <p>
-          Keep it concise. The best endings don't drag — they land and stop.
+          Features nobody asked for. Components that could handle five different
+          use cases. Folder structures that felt “right.” Abstractions for code
+          that might be reused someday.
         </p>
 
-        <!-- <hr />
+        <p>It looked smart. It felt like progress at the time.</p>
 
-        <div class="author-card">
-          <div class="author-avatar">D</div>
-          <div>
-            <p class="author-name">Dimas Abimanyu</p>
-            <p class="author-bio">
-              Software engineer from Indonesia building web products and writing
-              about the real experience of working in tech. Find me on
-              <a href="https://twitter.com/dimasabimanyu">Twitter</a> or
-              <a href="https://linkedin.com/in/dimasabimanyu">LinkedIn</a>.
-            </p>
-          </div>
-        </div> -->
+        <p>But it slowed everything down.</p>
+
+        <p>And the worst part? Most of it never got used.</p>
+
+        <p>
+          The edge cases didn’t happen. The reusable parts were used once. The
+          “future-proof” decisions got rewritten anyway.
+        </p>
+
+        <p>Eventually, I got tired of it.</p>
+
+        <h2>What Changed</h2>
+
+        <p>So I stopped overthinking. I just started building.</p>
+
+        <p>
+          If I need a schema, I design it for the current feature. If it needs
+          to change later, I change it later. Migrations aren’t a big deal.
+        </p>
+
+        <p>
+          If two components are slightly different, I duplicate. When the
+          pattern becomes obvious, then I refactor.
+        </p>
+
+        <p>
+          If I’m not sure something will be reused, I don’t abstract it yet.
+          Writing it twice is cheaper than guessing wrong.
+        </p>
+
+        <p>Same with side projects.</p>
+
+        <p>
+          I used to think about everything from day one—auth, payments,
+          analytics, dashboards—before anyone even cared about the core feature.
+        </p>
+
+        <p>Now I ship the simplest version possible.</p>
+
+        <p>Because over-engineering was never really about code.</p>
+
+        <p>It was about avoiding risk.</p>
+
+        <p>
+          Thinking feels safe. Planning feels productive. But shipping something
+          simple—something that might be wrong—that’s uncomfortable.
+        </p>
+
+        <p>So I used to hide behind complexity.</p>
+
+        <h2>What I Do Now</h2>
+
+        <p>Now I optimize for something else: momentum.</p>
+
+        <p>
+          Build the simplest thing that works. Ship it. Fix what breaks. Improve
+          what people actually use.
+        </p>
+
+        <p>Everything else can wait.</p>
+
+        <p>
+          I still care about clean code. I still refactor. I still think about
+          scale.
+        </p>
+
+        <p>Just not on day one.</p>
+
+        <p>Because the code that matters is the code that exists.</p>
       </article>
 
       <footer>
