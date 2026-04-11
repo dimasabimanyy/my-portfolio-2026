@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Silent Killer of Side Projects: Decision Fatigue — Dimas Abimanyu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --ink: #141210;
+        --ink-muted: #4a4744;
+        --ink-faint: #8a8480;
+        --paper: #faf9f7;
+        --paper-warm: #f2f0ec;
+        --accent: #c96a3a;
+        --accent-light: #f5ede7;
+        --border: #e0ddd8;
+        --font-display: "DM Serif Display", Georgia, serif;
+        --font-body: "DM Sans", system-ui, sans-serif;
+        --max-w: 660px;
+        --gap: clamp(2.5rem, 6vw, 5rem);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 1rem;
+        line-height: 1.7;
+        font-weight: 400;
+        -webkit-font-smoothing: antialiased;
+      }
+      ::-webkit-scrollbar {
+        width: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--paper);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--ink-faint);
+        border-radius: 2px;
+      }
+
+      /* NAV */
+      nav {
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem clamp(1.5rem, 6vw, 4rem);
+        background: rgba(250, 249, 247, 0.92);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: var(--font-display);
+        font-size: 1.1rem;
+        color: var(--ink);
+        text-decoration: none;
+      }
+      .nav-back {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--ink-muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: var(--max-w);
+        margin: 0 auto;
+        padding: 0 clamp(1.5rem, 6vw, 2rem);
+      }
+
+      /* ARTICLE HEADER */
+      .article-header {
+        padding-top: calc(var(--gap) + 2rem);
+        padding-bottom: 3rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .article-tag {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 1.25rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .article-tag::after {
+        content: "";
+        display: block;
+        height: 1px;
+        width: 40px;
+        background: var(--accent);
+        opacity: 0.4;
+      }
+      .article-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 6vw, 3.2rem);
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        margin-bottom: 1.5rem;
+      }
+      .article-meta {
+        display: flex;
+        gap: 1.5rem;
+        font-size: 0.8rem;
+        color: var(--ink-faint);
+        font-weight: 500;
+      }
+
+      /* ARTICLE BODY */
+      .article-body {
+        padding: 3rem 0;
+      }
+      .article-body p {
+        color: var(--ink-muted);
+        font-size: 1.02rem;
+        line-height: 1.85;
+        margin-bottom: 1.5rem;
+      }
+      .article-body h2 {
+        font-family: var(--font-display);
+        font-size: 1.65rem;
+        line-height: 1.2;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        margin: 3rem 0 1rem;
+      }
+      .article-body blockquote {
+        border-left: 3px solid var(--accent);
+        margin: 2.5rem 0;
+        padding: 1.25rem 1.75rem;
+        background: var(--accent-light);
+      }
+      .article-body blockquote p {
+        color: var(--ink);
+        font-family: var(--font-display);
+        font-style: italic;
+        font-size: 1.15rem;
+        line-height: 1.6;
+        margin-bottom: 0;
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 2rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-top: 1px solid var(--border);
+        margin-top: var(--gap);
+      }
+      .footer-copy {
+        font-size: 0.78rem;
+        color: var(--ink-faint);
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="../index.html" class="nav-logo">Dimas Abimanyu</a>
+      <a href="../blog.html" class="nav-back">← All Writing</a>
+    </nav>
+
+    <div class="article-header">
+      <div class="container">
+        <p class="article-tag">Notes</p>
+        <h1 class="article-title">The Silent Killer of Side Projects: Decision Fatigue</h1>
+        <div class="article-meta">
+          <span>April 2026</span>
+          <span>3 min read</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <article class="article-body">
+        <p>
+          Most side projects don’t end with a crash. They end with a slow, quiet stall. 
+          Not because the tech is too hard, but because the choices are too many.
+        </p>
+
+        <h2>The Productivity Illusion</h2>
+        <p>
+          We often mistake choosing for building. We spend hours mixing and matching options, reading “Stack A vs Stack B” articles, and planning for scale we don’t have yet.
+        </p>
+        <p>
+          It feels like progress because your brain is working hard—but nothing ships. In a side project, where there are no managers or deadlines to push you through the friction, this stall is usually fatal.
+        </p>
+
+        <h2>The Momentum Trap</h2>
+        <p>
+          Even small things start to carry too much weight. Which state management? Which folder structure? We pause more than we build.
+        </p>
+        
+        <blockquote>
+          <p>
+            Every choice burns your “momentum budget.” By the time you get to the actual logic, you’re already out of gas. That’s decision fatigue.
+          </p>
+        </blockquote>
+
+        <h2>The Fix: Boring Defaults</h2>
+        <p>
+          I realized I was stuck not because I didn’t know what to do, but because I had too many ways to do it. The fix wasn’t to learn more. It was to decide less.
+        </p>
+        <p>
+          I started defaulting everything. Same auth flow. Same structure. Same deployment script. I don’t want to be creative with infrastructure; I want to be creative with the product. If I’ve done it before, I don’t rethink it.
+        </p>
+
+        <h2>The Goal</h2>
+        <p>
+          Now, I treat decisions like a tax. Every time I have to stop and think about “the right way” to do a small task, I’m paying a price.
+        </p>
+        <p>
+          If you want to ship, you have to outrun the fatigue. Pick the “boring” option. Use the tool you already know. Build the minimum version that works.
+        </p>
+        <p>
+          Because the goal of a side project isn’t to make perfect decisions. It’s to exist. You can’t improve what doesn’t exist.
+        </p>
+      </article>
+
+      <footer>
+        <span class="footer-copy">© 2026 Dimas Abimanyu</span>
+        <a href="../blog.html" class="nav-back">← All Writing</a>
+      </footer>
+    </div>
+  </body>
+</html>
