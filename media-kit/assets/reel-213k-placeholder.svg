@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800">
+    <rect width="800" height="800" fill="#deddd7"/>
+    <rect x="40" y="40" width="720" height="720" fill="none" stroke="#111" stroke-width="2"/>
+    <text x="70" y="120" font-family="Arial, sans-serif" font-size="28" fill="#111">TOP REEL</text>
+    <text x="70" y="690" font-family="monospace" font-size="18" fill="#666">Replace with Reel thumbnail</text>
+    <text x="400" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="100" font-weight="700" fill="#111">IMAGE</text>
+    </svg>
