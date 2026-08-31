@@ -538,6 +538,12 @@ body {
   line-height: 1.7;
   font-size: 14px;
 }
+.contact-btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .contact-btn {
   display: inline-block;
   background: #111;
